@@ -7,9 +7,9 @@ export default function Home() {
   return (
     <>
       <Head title="Homepage" />
-      <div className="min-h-screen flex flex-col font-sans bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-50">
+      <div className="flex flex-col min-h-screen font-sans text-gray-900 bg-gray-50 dark:bg-gray-900 dark:text-gray-50">
         {/* Header */}
-        <header className="flex justify-between items-center p-4 bg-white dark:bg-gray-800 shadow-md">
+        <header className="flex items-center justify-between p-4 bg-white shadow-md dark:bg-gray-800">
           <h1 className="text-xl font-bold">RiteChoice23</h1>
           <nav>
             <ul className="flex gap-4">
@@ -54,25 +54,20 @@ export default function Home() {
 
         {/* Hero Section */}
         <main className="flex-grow">
-          <section className="text-center py-16 bg-gray-100 dark:bg-gray-700">
-            <h2 className="text-4xl font-bold mb-4">Hi, I'm Ritechoice23</h2>
-            <p className="text-lg mb-6">Building modern web experiences with React and beyond.</p>
+          <section className="py-16 text-center bg-gray-100 dark:bg-gray-700">
+            <h2 className="mb-4 text-4xl font-bold">Hi, I'm Ritechoice23</h2>
+            <p className="mb-6 text-lg">Building modern web experiences with React and beyond.</p>
             <div className="space-x-4">
-              <a
-                href="#projects"
-                className="px-4 py-2 bg-gray-800 text-white rounded hover:bg-gray-900"
-              >
-                Add task
-              </a>
+              {/* new task button goes here */}
             </div>
           </section>
         </main>
 
         {/* Footer */}
 
-        <footer className="py-4 bg-gray-800 text-white text-center">
+        <footer className="py-4 text-center text-white bg-gray-800">
           <p>© {new Date().getFullYear()} Your Name. All Rights Reserved.</p>
-          <div className="flex justify-center space-x-4 mt-2">
+          <div className="flex justify-center mt-2 space-x-4">
             <a href="#github" className="hover:underline">
               GitHub
             </a>
