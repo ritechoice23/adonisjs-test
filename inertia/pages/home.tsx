@@ -1,9 +1,23 @@
-import { Head, Link, usePage } from '@inertiajs/react'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Head, Link, useForm, usePage } from '@inertiajs/react'
 import { route } from '@izzyjs/route/client'
 
-export default function Home() {
+export default function Home({ tasks }: { tasks: any[] }) {
   const { auth } = usePage().props
-  // @ts-ignore
+  const { data, setData, post, errors } = useForm({
+    task: '',
+  })
+  const handleAddTask = (e: { preventDefault: () => void }) => {
+    e.preventDefault()
+    return post(route('tasks.store').toString(), {
+      async: true,
+      onSuccess: () => {
+        // setData('task', '')
+      },
+    })
+  }
+
   return (
     <>
       <Head title="Homepage" />
@@ -57,8 +71,34 @@ export default function Home() {
           <section className="py-16 text-center bg-gray-100 dark:bg-gray-700">
             <h2 className="mb-4 text-4xl font-bold">Hi, I'm Ritechoice23</h2>
             <div className="space-x-4">
-
+              <form onSubmit={handleAddTask} className='flex max-w-2xl gap-2 mx-auto'>
+                <Input value={data.task} onChange={(e) => setData('task', e.target.value)} type="text" placeholder='todo...' />
+                <Button type='submit'>
+                  add
+                </Button>
+              </form>
+              <p>
+                {data.task}
+              </p>
+              {errors.task && <p>
+                {errors.task}
+              </p>}
             </div>
+          </section>
+
+          <section className='max-w-2xl py-16 mx-auto'>
+            <h2>Todos</h2>
+            {tasks.map((task: any) => (
+              <>
+                <div key={task.id} className='flex gap-4'>
+                  <span>{task.id}</span>
+                  <span>{task.completed ? '✅' : '❌'}</span>
+                  <p>{task.task}</p>
+
+                  <Link async method='delete' href={route('tasks.destroy', { params: { id: task.id } }).toString()}>delete</Link>
+                </div>
+              </>
+            ))}
           </section>
         </main>
 
