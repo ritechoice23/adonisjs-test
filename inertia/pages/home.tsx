@@ -56,9 +56,8 @@ export default function Home() {
         <main className="flex-grow">
           <section className="py-16 text-center bg-gray-100 dark:bg-gray-700">
             <h2 className="mb-4 text-4xl font-bold">Hi, I'm Ritechoice23</h2>
-            <p className="mb-6 text-lg">Building modern web experiences with React and beyond.</p>
             <div className="space-x-4">
-              {/* new task button goes here */}
+
             </div>
           </section>
         </main>
