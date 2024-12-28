@@ -1,8 +1,6 @@
 import Task from '#models/task'
 import type { HttpContext } from '@adonisjs/core/http'
 import vine from '@vinejs/vine'
-import { dd } from '@adonisjs/core/services/dumper'
-import app from '@adonisjs/core/services/app'
 
 export default class TasksController {
   async store({ request, response, session }: HttpContext) {
