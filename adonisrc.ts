@@ -14,7 +14,8 @@ export default defineConfig({
     () => import('@adonisjs/core/commands'),
     () => import('@adonisjs/lucid/commands'),
     () => import('@izzyjs/route/commands'),
-    () => import('adonisjs-scheduler/commands')
+    () => import('adonisjs-scheduler/commands'),
+    () => import('@rlanz/bull-queue/commands')
   ],
 
   /*
@@ -47,7 +48,9 @@ export default defineConfig({
     {
       file: () => import('adonisjs-scheduler/scheduler_provider'),
       environment: ['console'],
-    }
+    },
+    () => import('@rlanz/bull-queue/queue_provider'),
+    () => import('@adonisjs/redis/redis_provider')
   ],
 
   /*
