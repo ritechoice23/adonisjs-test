@@ -7,13 +7,16 @@ export default function Home({ tasks }: { tasks: any[] }) {
   const { auth } = usePage().props
   const { data, setData, post, errors } = useForm({
     task: '',
+    image: ''
   })
+
   const handleAddTask = (e: { preventDefault: () => void }) => {
     e.preventDefault()
     return post(route('tasks.store').toString(), {
+      forceFormData: true,
       async: true,
       onSuccess: () => {
-        // setData('task', '')
+        setData('task', '')
       },
     })
   }
@@ -53,7 +56,7 @@ export default function Home({ tasks }: { tasks: any[] }) {
                     <li>
                       <Link
                         method={'post'}
-                        href={route('logout') as unknown as string}
+                        href={route('logout').toString()}
                         className="hover:underline"
                       >
                         Logout
@@ -72,6 +75,9 @@ export default function Home({ tasks }: { tasks: any[] }) {
             <h2 className="mb-4 text-4xl font-bold">Hi, I'm Ritechoice23</h2>
             <div className="space-x-4">
               <form onSubmit={handleAddTask} className='flex max-w-2xl gap-2 mx-auto'>
+                <input type="file" accept="image/*"
+                  name='image'
+                  onChange={(e) => setData('image', e.target.files?.[0])} />
                 <Input value={data.task} onChange={(e) => setData('task', e.target.value)} type="text" placeholder='todo...' />
                 <Button type='submit'>
                   add
